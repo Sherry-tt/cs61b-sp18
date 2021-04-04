@@ -11,6 +11,8 @@ public class TestCalcDistance {
         checkCalcDistance();
     }
 
+
+
     /**
      *  Checks whether or not two Doubles are equal and prints the result.
      *
