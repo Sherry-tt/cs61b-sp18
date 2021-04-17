@@ -87,7 +87,7 @@ public class IntList {
             L = L.rest;
         }
         L.rest = B;
-        return null;
+        return A;
     }
 
     /**
@@ -104,7 +104,7 @@ public class IntList {
             A = A.rest;
             temp = temp.rest;
         }
-        dcatenate(cateList, B);
+        cateList = dcatenate(cateList, B);
         return cateList;
     }
 
