@@ -14,7 +14,7 @@ public class ArrayDeque<T> {
     /* Adds an item of type T to the front of the deque. */
     public void addFirst(T item) {
         if (isFull()) {
-            resize( (int) ( capacity * 1.5));
+            resize((int) (capacity * 1.5));
         }
         left = (left - 1 + capacity) % capacity;
         items[left] = item;
@@ -53,9 +53,8 @@ public class ArrayDeque<T> {
                 System.out.print(items[i] + " ");
             }
             System.out.println(items[right]);
-        }
-        else if (left >= right) {
-            for (int i = left; i < capacity; i++ ) {
+        } else if (left >= right) {
+            for (int i = left; i < capacity; i++) {
                 System.out.print(items[i] + " ");
             }
             for (int j = 0; j < right - 1; j++) {
@@ -116,10 +115,13 @@ public class ArrayDeque<T> {
     private void resize(int newSize) {
         T[] newArray = (T[]) new Object[newSize];
 
-        int firstPart = listSize - left;
-        System.arraycopy(items, left, newArray, 0, firstPart);
-        System.arraycopy(items, 0, newArray, firstPart, listSize - firstPart);
-
+        if (left < right) {
+            System.arraycopy(items, left, newArray, 0, listSize);
+        } else {
+            int firstPart = capacity - left;
+            System.arraycopy(items, left, newArray, 0, firstPart);
+            System.arraycopy(items, 0, newArray, firstPart, listSize - firstPart);
+        }
         left = 0;
         right = listSize;
         items = newArray;
