@@ -69,12 +69,12 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        listSize--;
         T res = items[left];
         left = (left + 1) % capacity;
         if (isLowUsageRate()) {
             resize((int) (capacity * 0.5));
         }
-        listSize--;
         return res;
     }
 
@@ -83,12 +83,12 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        listSize--;
         right = (right - 1 + capacity) % capacity;
         T res = items[right];
         if (isLowUsageRate()) {
             resize((int) (capacity * 0.5));
         }
-        listSize--;
         return res;
     }
 
