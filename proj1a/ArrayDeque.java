@@ -1,9 +1,9 @@
 public class ArrayDeque<T> {
-    public T[]  items;
-    public int capacity = 8;
-    public int left;
-    public int right;
-    public int listSize;
+    private T[]  items;
+    private int capacity = 8;
+    private int left;
+    private int right;
+    private int listSize;
 
     public ArrayDeque(){
         items = (T []) new Object[capacity];
@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
     /* Adds an item of type T to the back of the deque. */
     public void addLast(T item){
         if (isFull()){
-            resize((int) (capacity*1.5));
+            resize((int) (capacity * 1.5));
         }
         items[right] = item;
         right = (right +1) % capacity;
@@ -71,7 +71,7 @@ public class ArrayDeque<T> {
         T res = items[left];
         left = (left + 1) % capacity;
         if(isLowUsageRate()){
-            resize((int) (capacity*0.5));
+            resize((int) (capacity * 0.5));
         }
         listSize--;
         return res;
@@ -83,7 +83,7 @@ public class ArrayDeque<T> {
         right = (right - 1 + capacity) % capacity;
         T res = items[right];
         if(isLowUsageRate()){
-            resize((int) (capacity*0.5));
+            resize((int) (capacity * 0.5));
         }
         listSize--;
         return res;
@@ -109,14 +109,14 @@ public class ArrayDeque<T> {
     }
 
     private boolean isLowUsageRate(){
-        return capacity >= 16 && listSize / capacity <0.25;
+        return capacity >= 16 && listSize / (double)capacity <0.25;
     }
 
     private void resize(int newSize){
         T[] newArray = (T[]) new Object[newSize];
         int size= listSize;
         if (left < right){
-            System.arraycopy(items, 0, newArray, 0, size);
+            System.arraycopy(items, left, newArray, 0, size);
         } else{
             int firstPart = size - left;
             System.arraycopy(items, left, newArray, 0, firstPart);

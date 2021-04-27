@@ -1,8 +1,8 @@
 public class LinkedListDeque<T> {
-    public class Node{
-        public T item;
-        public Node next;
-        public Node prev ;
+    private class Node{
+        private T item;
+        private Node next;
+        private Node prev ;
 
         public Node(Node n, T i, Node m){
             item = i;
@@ -11,8 +11,8 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public Node sentinel; //This is a Circular Sentinel
-    public int size;
+    private Node sentinel; //This is a Circular Sentinel
+    private int size;
 
     /* Creates an empty list. */
     public LinkedListDeque( ){
@@ -72,8 +72,8 @@ public class LinkedListDeque<T> {
      public T removeLast(){
          if (sentinel.next == sentinel) return null;
          T res = sentinel.prev.item;
-         sentinel.prev = sentinel.next.prev;
-         sentinel.next.next = sentinel;
+         sentinel.prev = sentinel.prev.prev;
+         sentinel.prev.next = sentinel;
          size--;
          return res;
      }
@@ -83,7 +83,7 @@ public class LinkedListDeque<T> {
      * and so forth. If no such item exists, returns null. Must not alter the deque!
      */
      public T get(int index){
-         if (size <= index)  return null;
+         if ((size <= index) || (index < 0))  return null;
          Node temp = sentinel.next;
          while(index > 0){
              temp = temp.next;
@@ -94,7 +94,7 @@ public class LinkedListDeque<T> {
 
     /* Same as get, but uses recursion. */
     public T getRecursive(int index){
-        if (size <= index) return null;
+        if ((size < index) || (index < 0)) return null;
         return getRecursive(sentinel.next, index);
     }
 
