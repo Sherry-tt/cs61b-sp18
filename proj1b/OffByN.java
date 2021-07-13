@@ -2,7 +2,7 @@
 public class OffByN implements CharacterComparator {
 
 
-    int limitNumber;
+    private int limitNumber;
 
     // constructor
     public OffByN(int N) {
