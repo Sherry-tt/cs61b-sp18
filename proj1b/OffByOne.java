@@ -1,5 +1,3 @@
-import static org.junit.Assert.assertEquals;
-
 public class OffByOne implements CharacterComparator {
 
     @Override

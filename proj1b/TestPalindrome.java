@@ -25,11 +25,16 @@ public class TestPalindrome {
 
     @Test
     public void testisPalindromeOverloading() {
-        CharacterComparator cc = new OffByOne();
-        assertTrue(palindrome.isPalindrome("cat", cc));
-        assertTrue(palindrome.isPalindrome("", cc));
-        assertFalse(palindrome.isPalindrome("abcba", cc));
+        CharacterComparator cc = new OffByN(5);
+        assertTrue(palindrome.isPalindrome("af", cc));
+        assertTrue(palindrome.isPalindrome("fa", cc));
+        assertFalse(palindrome.isPalindrome("fh", cc));
 
+        assertTrue(palindrome.isPalindrome("", cc));
+        assertTrue(palindrome.isPalindrome("a", cc));
+        assertTrue(palindrome.isPalindrome("bing", cc));
+        assertFalse(palindrome.isPalindrome("aabaa", cc));
+        assertFalse(palindrome.isPalindrome("noon", cc));
     }
 
 }
